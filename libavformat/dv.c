@@ -527,7 +527,7 @@ static int dv_read_header(AVFormatContext *s)
                                c->dv_demux.sys->time_base);
 
     if (s->pb->seekable & AVIO_SEEKABLE_NORMAL)
-        dv_read_timecode(s);
+        return !dv_read_timecode(s) ? -1 : 0;
 
     return 0;
 }
